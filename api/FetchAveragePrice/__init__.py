@@ -1,10 +1,11 @@
 import logging
 import json
+import os
 import azure.functions as func
 from azure.storage.blob import BlobServiceClient
 
-AZURE_STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=defaultresourcegrouab63;AccountKey=EkOzv4YeXG7s0MtFWbaCaaY2C+VoZoCLh6izbs+Q5B/Az2dafQLTv3XMhOffG3UVPKRtqq5m70Ww+AStYDKFlw==;EndpointSuffix=core.windows.net"
-container_name = "prices"
+AZURE_STORAGE_CONNECTION_STRING = os.environ.get('AZURE_STORAGE_CONNECTION_STRING', None)
+CONTAINER_NAME = "prices"
 
 def average_price(start, end, blob_service_client, container_client):
     blob_list = []
@@ -12,7 +13,7 @@ def average_price(start, end, blob_service_client, container_client):
     for blob in container_client.list_blobs():
         if ((blob.name >= start) and (blob.name <= end)):
             blob_client = blob_service_client.get_blob_client(
-                container_name, blob.name)
+                CONTAINER_NAME, blob.name)
             blobr = blob_client.download_blob()
             blob_content = blobr.readall()
             datadict = json.loads(blob_content)
@@ -33,7 +34,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 AZURE_STORAGE_CONNECTION_STRING)
 
             container_client = blob_service_client.get_container_client(
-                container_name)
+                CONTAINER_NAME)
             average = average_price(start_time, end_time, blob_service_client, container_client)
         except Exception as exc:
             logging.error("exception", exc)

@@ -1,8 +1,10 @@
 import json
 import requests
+import os
 from azure.storage.blob import BlobServiceClient, BlobClient
+import azure.functions as func
 
-AZURE_STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=defaultresourcegrouab63;AccountKey=EkOzv4YeXG7s0MtFWbaCaaY2C+VoZoCLh6izbs+Q5B/Az2dafQLTv3XMhOffG3UVPKRtqq5m70Ww+AStYDKFlw==;EndpointSuffix=core.windows.net"
+AZURE_STORAGE_CONNECTION_STRING = os.environ.get('AZURE_STORAGE_CONNECTION_STRING', None)
 
 def parse_date(date):
     parsed = date.split('T')
@@ -11,7 +13,7 @@ def parse_date(date):
     hour = time.split(':')[0]
     return f"{day}-{hour}"
 
-def main():
+def main(mytimer: func.TimerRequest):
     response_api = requests.get('https://api.porssisahko.net/v1/latest-prices.json')
     data = response_api.text
     data_obj = json.loads(data)
@@ -34,6 +36,3 @@ def main():
         if not new_blob.exists():
             print('creating new blob', blob_name)
             new_blob.upload_blob(json.dumps(item))
-
-if __name__ == '__main__':
-    main()
