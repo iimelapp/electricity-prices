@@ -1,2 +1,6 @@
 
 *.pyc
+
+.python_packages
+__pycache__
+.vscode
