@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "electricity-prices-rg"
-    storage_account_name = "epstorageaccount220614"
+    resource_group_name  = "tfstates"
+    storage_account_name = "tfstates220614"
     container_name       = "tfstate"
     key                  = "tfstate.tfstate"
   }

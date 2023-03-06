@@ -4,8 +4,6 @@
 .python_packages
 __pycache__
 .vscode
-terraform/terraform.tfstate.backup
-terraform/terraform.tfstate
 terraform/.terraform.lock.hcl
 terraform/.terraform/providers/registry.terraform.io/hashicorp/archive/2.2.0/windows_amd64/terraform-provider-archive_v2.2.0_x5.exe
 *.info
