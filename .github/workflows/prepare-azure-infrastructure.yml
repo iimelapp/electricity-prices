@@ -1,7 +1,7 @@
 name: 'Prepare Azure Infrastructure'
 
 on:
-  workflow_dispatch:
+  push:
 
 env:
   ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
