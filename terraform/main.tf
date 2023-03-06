@@ -4,11 +4,6 @@ provider "archive" {
 
 provider "azurerm" {
   features {}
-
-  subscription_id   = "518aba77-825e-43b5-8e33-5dbdeaf4d8ac"
-  tenant_id         = "30374e8b-89ee-46cb-8064-f659cea96f13"
-  client_id         = "8b44d6fa-6d97-40c1-972b-09e5e2a952c6"
-  client_secret     = "qBK8Q~PSd6fz8C5N2LJw4GkXsBoQDrjMgfKEkdyT"
 }
 
 locals {
