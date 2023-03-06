@@ -38,7 +38,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             average = average_price(start_time, end_time, blob_service_client, container_client)
         except Exception as exc:
             logging.error("exception", exc)
-        return func.HttpResponse(f"Average price is {average}")
+        return func.HttpResponse(f"Average price is {average}", status_code=200)
 
     else:
         return func.HttpResponse("Start time or end time missing or they are invalid", status_code=400)

@@ -41,7 +41,7 @@ const App = () => {
       <label>end date </label><input value={endDate} onChange={handleEndDayChange}></input>
       <label> end time </label><input value={endTime} onChange={handleEndTimeChange}></input><br /><br />
       <button onClick={fetchAverage}>fetch average</button><br />
-        {average}
+      <p>{average}</p>
     </div>
   )
 }
