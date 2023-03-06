@@ -1,3 +1,12 @@
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "electricity-prices-rg"
+    storage_account_name = "epstorageaccount220614"
+    container_name       = "tfstate"
+    key                  = "tfstate.tfstate"
+  }
+}
+
 provider "archive" {
   
 }
