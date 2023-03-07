@@ -1,12 +1,3 @@
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "tfstates"
-    storage_account_name = "tfstates220614"
-    container_name       = "tfstate"
-    key                  = "tfstate.tfstate"
-  }
-}
-
 provider "archive" {
   
 }
